@@ -1,9 +1,8 @@
 # bunnyz_n_bitchez
  https://github.com/tukru/bunnyz'n'bitchez
-
-Inspiration came from @Hak5/ReverseBunny v2.0
+ 
+Inspiration came from:
 https://github.com/hak5/bashbunny-payloads/tree/master/payloads/library/remote_access/ReverseBunny
-Author: Tukru
 
 Description:
 ReverseBunny is a tool that provides remote access to a target machine using an obfuscated PowerShell reverse shell. It works by starting a Python HTTP server on the attacker's machine, which serves a PowerShell script that is downloaded and executed by the target machine.
