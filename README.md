@@ -1,6 +1,8 @@
 # bunnyz_n_bitchez
  https://github.com/tukru/bunnyz'n'bitchez
-ReverseBunny v2.0
+
+Inspiration came from @Hak5/ReverseBunny v2.0
+https://github.com/hak5/bashbunny-payloads/tree/master/payloads/library/remote_access/ReverseBunny
 Author: Tukru
 
 Description:
