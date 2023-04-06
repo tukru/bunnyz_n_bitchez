@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Title:         ReverseBunny
+# Title:         bunnyz_n_bitches
 # Description:   Get remote access, using an obfuscated powershell reverse shell.
 # Author:        Tukru
 # Version:       2.0
